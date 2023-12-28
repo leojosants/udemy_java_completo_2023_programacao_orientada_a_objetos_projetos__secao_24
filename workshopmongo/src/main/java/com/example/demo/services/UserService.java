@@ -33,6 +33,11 @@ public class UserService {
 		return this.repository.insert(obj);
 	}
 	
+	public void deleteById(String id) {
+		this.findById(id);
+		this.repository.deleteById(id);
+	}
+	
 	public User fromDTO(UserDTO obj_dto) {
 		return instanceateUser(obj_dto);
 	}
