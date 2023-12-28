@@ -3,13 +3,19 @@ package com.example.demo.domain;
 
 /*------------------- imports -------------------*/
 import java.io.Serializable;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 /*------------------- class User -------------------*/
+@Document(collection = "user")
 public class User implements Serializable {
 
 	/*------------------- attributes -------------------*/
 	private static final long serialVersionUID = 1L;
+
+	@Id
 	private String id;
+
 	private String name;
 	private String email;
 	
