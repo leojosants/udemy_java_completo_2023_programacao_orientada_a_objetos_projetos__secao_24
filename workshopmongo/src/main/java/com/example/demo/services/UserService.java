@@ -38,6 +38,17 @@ public class UserService {
 		this.repository.deleteById(id);
 	}
 	
+	public User update(User obj) {
+		User new_obj = findById(obj.getId());
+		updateData(new_obj, obj);
+		return this.repository.save(new_obj);
+	}
+	
+	private void updateData(User new_obj, User obj) {
+		new_obj.setName(obj.getName());
+		new_obj.setEmail(obj.getEmail());
+	}
+
 	public User fromDTO(UserDTO obj_dto) {
 		return instanceateUser(obj_dto);
 	}
