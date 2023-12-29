@@ -2,6 +2,7 @@
 package com.example.demo.resources;
 
 /*------------------- imports -------------------*/
+import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -34,6 +35,19 @@ public class PostResource {
 	public ResponseEntity<List<Post>> findByTitle(@RequestParam(value = "text", defaultValue = "") String text) {	
 		text = URL.decodeParam(text);
 		List<Post> list = this.service.findByTitle(text);
+		return ResponseEntity.ok().body(list);
+	}
+	
+	@GetMapping(value = "/fullsearch")
+	public ResponseEntity<List<Post>> fullSearch(
+			@RequestParam(value = "text", defaultValue = "") String text,
+			@RequestParam(value = "min_date", defaultValue = "") String min_date,
+			@RequestParam(value = "max_date", defaultValue = "") String max_date
+	) {	
+		text = URL.decodeParam(text);
+		Date min = URL.convertDate(min_date, new Date(0L));
+		Date max = URL.convertDate(max_date, new Date());
+		List<Post> list = this.service.fullSearch(text, min, max);
 		return ResponseEntity.ok().body(list);
 	}
 }

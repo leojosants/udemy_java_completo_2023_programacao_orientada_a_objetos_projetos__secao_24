@@ -2,6 +2,7 @@
 package com.example.demo.services;
 
 /*------------------- imports -------------------*/
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,5 +27,10 @@ public class PostService {
 	
 	public List<Post> findByTitle(String text) {
 		return this.repository.searchTitle(text);
+	}
+	
+	public List<Post> fullSearch(String text, Date min_date, Date max_date) {
+		max_date = new Date(max_date.getTime() + 24 * 60 * 60 * 1000);
+		return this.repository.fullSearch(text, min_date, max_date);
 	}
 }
