@@ -66,6 +66,10 @@ public class Instantiation implements CommandLineRunner {
 		post_2.setAuthor(instanceateAuthorDTO(maria));
 		
 		this.post_repository.saveAll(Arrays.asList(post_1, post_2));
+		
+		maria.getPosts().addAll(Arrays.asList(post_1, post_2));
+		
+		this.user_repository.save(maria);
 	}
 
 	private AuthorDTO instanceateAuthorDTO(User obj) {
