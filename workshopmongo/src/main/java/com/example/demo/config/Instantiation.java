@@ -53,14 +53,14 @@ public class Instantiation implements CommandLineRunner {
 
 		Post post_1 = instanceatePost();
 		post_1.setId(null);
-		post_1.setId("21/03/2018");
+		post_1.setDate(simple_date_format.parse("21/03/2018"));
 		post_1.setTitle("Partiu viagem");
 		post_1.setBody("Vou viajar para São Paulo. Abraços!");
 		post_1.setAuthor(instanceateAuthorDTO(maria));
 		
 		Post post_2 = instanceatePost();
 		post_2.setId(null);
-		post_2.setId("23/03/2018");
+		post_2.setDate(simple_date_format.parse("23/03/2018"));
 		post_2.setTitle("Bom dia");
 		post_2.setBody("Acordei feliz hoje!");
 		post_2.setAuthor(instanceateAuthorDTO(maria));

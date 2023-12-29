@@ -3,7 +3,7 @@ package com.example.demo.domain;
 
 /*------------------- imports -------------------*/
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import com.example.demo.dto.AuthorDTO;
