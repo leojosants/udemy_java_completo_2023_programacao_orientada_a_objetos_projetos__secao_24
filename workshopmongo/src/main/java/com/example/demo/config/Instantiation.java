@@ -10,6 +10,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import com.example.demo.domain.Post;
 import com.example.demo.domain.User;
+import com.example.demo.dto.AuthorDTO;
 import com.example.demo.repository.PostRepository;
 import com.example.demo.repository.UserRepository;
 
@@ -48,22 +49,27 @@ public class Instantiation implements CommandLineRunner {
 		bob.setName("Bob Grey");
 		bob.setEmail("bob@gmail.com");
 
+		this.user_repository.saveAll(Arrays.asList(maria, alex, bob));
+
 		Post post_1 = instanceatePost();
 		post_1.setId(null);
 		post_1.setId("21/03/2018");
 		post_1.setTitle("Partiu viagem");
 		post_1.setBody("Vou viajar para São Paulo. Abraços!");
-		post_1.setAuthor(maria);
+		post_1.setAuthor(instanceateAuthorDTO(maria));
 		
 		Post post_2 = instanceatePost();
 		post_2.setId(null);
 		post_2.setId("23/03/2018");
 		post_2.setTitle("Bom dia");
 		post_2.setBody("Acordei feliz hoje!");
-		post_2.setAuthor(maria);
+		post_2.setAuthor(instanceateAuthorDTO(maria));
 		
-		this.user_repository.saveAll(Arrays.asList(maria, alex, bob));
 		this.post_repository.saveAll(Arrays.asList(post_1, post_2));
+	}
+
+	private AuthorDTO instanceateAuthorDTO(User obj) {
+		return new AuthorDTO(obj);
 	}
 
 	private SimpleDateFormat instanceateSimpleDateFormat() {
