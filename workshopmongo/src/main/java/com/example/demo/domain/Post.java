@@ -3,10 +3,14 @@ package com.example.demo.domain;
 
 /*------------------- imports -------------------*/
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import com.example.demo.dto.AuthorDTO;
+import com.example.demo.dto.CommentDTO;
 
 /*------------------- class Post-------------------*/
 @Document
@@ -22,6 +26,7 @@ public class Post implements Serializable {
 	private String title;
 	private String body;
 	private AuthorDTO author;
+	private List<CommentDTO> coments = instanceateListComentDTOArrayList();
 	
 	/*------------------- constructors -------------------*/
 	public Post() {}
@@ -74,8 +79,16 @@ public class Post implements Serializable {
 	public void setAuthor(AuthorDTO author) {
 		this.author = author;
 	}
+	
+	public List<CommentDTO> getComents() {
+		return coments;
+	}
 
 	/*------------------- methods -------------------*/
+	private List<CommentDTO> instanceateListComentDTOArrayList() {
+		return new ArrayList<>();
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
